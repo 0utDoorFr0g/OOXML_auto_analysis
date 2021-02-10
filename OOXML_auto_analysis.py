@@ -2,6 +2,7 @@ import zipfile
 import os
 import shutil
 
+
 def check_ooxml_file(path):
     """ check the file is OOXML file
     Args:
@@ -11,7 +12,7 @@ def check_ooxml_file(path):
         None : if function raise exception return False
     """
 
-    f = open(path,'rb')
+    f = open(path, 'rb')
     check_file_data = f.read()
     f.close()
 
@@ -23,7 +24,7 @@ def check_ooxml_file(path):
     temp_directory = os.path.dirname(path) + "\\" + "temp"
 
     try:
-         os.makedirs(temp_directory)
+        os.makedirs(temp_directory)
     except OSError:
         return None
 
@@ -31,11 +32,9 @@ def check_ooxml_file(path):
 
     content_file = temp_directory + "\\" + "[Content_Types].xml"
 
-    if os.path.isfile(content_file) == False:
+    if os.path.isfile(content_file) not False:
         return False
-
-    shutil.rmtree(temp_directory) 
-    
+    shutil.rmtree(temp_directory)
     return True
 
 print(check_ooxml_file(r"C:\Users\forgo\Desktop\testtt\abcd.zip"))
